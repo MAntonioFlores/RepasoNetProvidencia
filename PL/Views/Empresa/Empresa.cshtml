@@ -1,0 +1,66 @@
+﻿@model ML.Empresa
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Empresa</h2>
+
+<body class="bg-secondary">
+    <div style="display:flex; justify-content:end; margin-bottom: 20px">
+        @Html.ActionLink("Agregar Empresa", "Form", "Empresa", new { area = "" }, new { @class = "btn btn-success" })
+
+    </div>
+
+    <div class="row d-flex justify-content-center " style="">
+
+        @if (Model.Empresas.Count > 0)
+        {
+            <div class="table-responsive ">
+                <table class="table table-bordered table-responsive table-striped table-dark">
+                    <thead class="thead-dark text-center">
+                        <tr>
+                            <th>ID Empresa</th>
+                            <th>Nombre</th>
+                            <th>Logo</th>
+                            <th>URL</th>
+                            <th>Direccion</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (ML.Empresa empresa in Model.Empresas)
+                        {
+                            <tr class="align-middle">
+                                <td>@empresa.IdEmpresa</td>
+                                <td>@empresa.Nombre</td>
+                                <td>@empresa.Logo</td>
+                                <td>@empresa.URL</td>
+                                <td>@empresa.Direccion</td>
+                                <td>
+                                    <a class="btn btn-warning" style="margin-bottom: 5px;" href=@Url.Action("Form", "Empresa", new { IdEmpresa = empresa.IdEmpresa })>Editar</a>
+                                    @*<button type="button" class="btn btn-warning" style="margin-bottom: 5px;">Editar Usuario</button>*@
+
+                                    @*<a href="@Url.Action("Delete","GetAll", "Usuario", new {IdDireccion = usuario.Direccion.IdDireccion, IdUsuario = usuario.IdUsuario})"class="btn btn-danger" style="margin-bottom:5px; width:100%" onclick="return confirm('¿Eseguro que deseas eliminar el registro?')">Eliminar</a>*@
+                                    <form action="@Url.Action("Delete", "Empresa")" method="post" onsubmit="return confirm('¿Estás seguro que deseas eliminar el registro?');">
+                                        <input type="hidden" name="IdProducto" value="@empresa.IdEmpresa" />
+
+                                        <button type="submit" class="btn btn-danger active" style="margin-bottom:2px; width:100%">Eliminar</button>
+                                    </form>
+                                    @*<a class="btn btn-danger" style="margin-bottom: 5px;" href=@Url.Action("Form", "Usuario", new {IdUsuario = usuario.IdUsuario, delete = true})>Eliminar Usuario</a>*@
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        }
+        else
+        {
+            <h1>No Se Encontraro Registros</h1>
+        }
+    </div>
+
+</body>

@@ -1,0 +1,42 @@
+﻿@model ML.Empresa
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Form</h2>
+
+
+@using (Html.BeginForm("Form", "Empresa", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model => model.IdEmpresa)
+
+    <body class="center-block .bg-light.bg-gradient table-responsive-sm">
+        <div class="row">
+            <div class="col-3" style="">
+                @Html.LabelFor(model => model.Nombre, new { @class = "form-label", @placeholder = "Nombre del Producto", @style = "text-center; padding-left: 18vh" })
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @placeholder = "Nombre del Producto", @style = "text-align: center", @onkeyup = ("soloLetras(this,'lblNombreSubcategoria')") })
+                <label style="color:#FF0000" id="lblNombreSubcategoria"></label>
+            </div>
+            <div class="col-3" style="">
+                @Html.LabelFor(model => model.Logo, new { @class = "form-label", @placeholder = "Numero de Material", @style = "text-center; padding-left: 14vh" })
+                @Html.TextBoxFor(model => model.Logo, new { @class = "form-control", @placeholder = "Numero de Material", @style = "text-align: center", @onkeyup = ("soloLetras(this,'lblApellidoPaterno')") })
+                <label style="color:#FF0000" id="lblApellidoPaterno"></label>
+            </div>
+            <div class="col-2" style="margin-left: 150px">
+                @Html.LabelFor(model => model.URL, new { @class = "form-label", @placeholder = "Inventario", @style = "text-center; padding-left: 7vh" })
+                @Html.TextBoxFor(model => model.URL, new { @class = "form-control", @placeholder = "Inventario", @style = "", @onkeyup = ("soloLetras(this,'lblApellidoMaterno')") })
+                <label style="color:#FF0000" id="lblApellidoMaterno"></label>
+            </div>
+            <div class="col-2" style="margin-left: 150px">
+                @Html.LabelFor(model => model.Direccion, new { @class = "form-label", @placeholder = "Inventario", @style = "text-center; padding-left: 7vh" })
+                @Html.TextBoxFor(model => model.Direccion, new { @class = "form-control", @placeholder = "Inventario", @style = "", @onkeyup = ("soloLetras(this,'lblApellidoMaterno')") })
+                <label style="color:#FF0000" id="lblApellidoMaterno"></label>
+            </div>
+            
+            <div>
+                <button type="submit" class="btn btn-success btn-lg d-grid gap-2 col-0 mx-auto">Agregar</button>
+            </div>
+        </div>
+    </body>
+}

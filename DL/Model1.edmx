@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MFloresEmpresaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Name="IdEmpresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Logo" Type="varchar(max)" />
+          <Property Name="URL" Type="varchar" MaxLength="100" />
+          <Property Name="Dirección" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="AddEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Logo" Type="varchar(max)" Mode="In" />
+          <Parameter Name="URL" Type="varchar" Mode="In" />
+          <Parameter Name="Dirección" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetAllEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetByIdEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Logo" Type="varchar(max)" Mode="In" />
+          <Parameter Name="URL" Type="varchar" Mode="In" />
+          <Parameter Name="Dirección" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="MFloresEmpresaModelStoreContainer">
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MFloresEmpresaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="URL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dirección" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="MFloresEmpresaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" />
+          <FunctionImport Name="AddEmpresa">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Logo" Mode="In" Type="String" />
+            <Parameter Name="URL" Mode="In" Type="String" />
+            <Parameter Name="Dirección" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteEmpresa">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllEmpresa" ReturnType="Collection(MFloresEmpresaModel.GetAllEmpresa_Result)" />
+          <FunctionImport Name="GetByIdEmpresa" ReturnType="Collection(MFloresEmpresaModel.GetByIdEmpresa_Result)">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateEmpresa">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Logo" Mode="In" Type="String" />
+            <Parameter Name="URL" Mode="In" Type="String" />
+            <Parameter Name="Dirección" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetAllEmpresa_Result">
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Logo" Nullable="true" />
+          <Property Type="String" Name="URL" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Dirección" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetByIdEmpresa_Result">
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Logo" Nullable="true" />
+          <Property Type="String" Name="URL" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Dirección" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MFloresEmpresaModelStoreContainer" CdmEntityContainer="MFloresEmpresaEntities">
+          <EntitySetMapping Name="Empresa">
+            <EntityTypeMapping TypeName="MFloresEmpresaModel.Empresa">
+              <MappingFragment StoreEntitySet="Empresa">
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddEmpresa" FunctionName="MFloresEmpresaModel.Store.AddEmpresa" />
+          <FunctionImportMapping FunctionImportName="DeleteEmpresa" FunctionName="MFloresEmpresaModel.Store.DeleteEmpresa" />
+          <FunctionImportMapping FunctionImportName="GetAllEmpresa" FunctionName="MFloresEmpresaModel.Store.GetAllEmpresa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MFloresEmpresaModel.GetAllEmpresa_Result">
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetByIdEmpresa" FunctionName="MFloresEmpresaModel.Store.GetByIdEmpresa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MFloresEmpresaModel.GetByIdEmpresa_Result">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateEmpresa" FunctionName="MFloresEmpresaModel.Store.UpdateEmpresa" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
