@@ -221,6 +221,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Empresa\Empresa.cshtml" />
     <Content Include="Views\Empresa\Form.cshtml" />
+    <Content Include="Views\Empresa\Modal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
